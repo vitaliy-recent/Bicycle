@@ -1,0 +1,585 @@
+//<ФАЙЛЫ СТИЛЕЙ>=========================================================================================================
+
+
+//</ФАЙЛЫ СТИЛЕЙ>=========================================================================================================
+
+
+
+//<ШРИФТЫ>===================================================================================================================================
+@import url('https://../fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=PT+Sans:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=PT+Sans:ital,wght@0,400;0,700;1,400&display=swap');
+@font-face {
+	font-family: 'PFDinTextCondPro';
+	src: url('../fonts/pfdintextcondpro-regular.eot');
+	src: local('☺'), url('../fonts/pfdintextcondpro-regular.woff') format('woff'), url('../fonts/pfdintextcondpro-regular.ttf') format('truetype'), url('../fonts/pfdintextcondpro-regular.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'PFDinTextCondPro';
+	src: url('../fonts/pfdintextcondpro-medium.eot');
+	src: local('☺'), url('../fonts/pfdintextcondpro-medium.woff') format('woff'), url('../fonts/pfdintextcondpro-medium.ttf') format('truetype'), url('../fonts/pfdintextcondpro-medium.svg') format('svg');
+	font-weight: 500;
+	font-style: normal;
+}
+
+//<Шрифт по умолчанию>===================================================================================================================
+$fontfamily: "Lato";
+//<Шрифт по умолчанию>===================================================================================================================
+
+
+//<Подключаем шрифты>====================================================================================================================
+
+//<Подключаем шрифты>====================================================================================================================
+
+
+//</ШРИФТЫ>===================================================================================================================================
+
+
+
+//Математические вычесления
+
+//.block { width: 300px / 960px * 100%; }
+
+
+//<МИКСИНЫ>==============================================================================================================================
+@mixin flexbox() {display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; font-size: 0;}
+@mixin flexboxinline() {display: -webkit-inline-flex; display: -moz-inline-flex; display: -ms-inline-flex; display: -o-inline-flex; display: inline-flex;}
+@mixin flexborder($val) {-webkit-box-ordinal-group: $val; -moz-box-ordinal-group: $val; -ms-flex-order: $val; -webkit-oder: $val; order: $val;}
+
+//<миксины>===================================================================================================================
+
+//Миксины начинаются со знака @
+//1
+//@mixin lager-text {
+//    font: {
+//      family: Arial;
+//      size: 30px;
+//      weight: 700;
+//    color: red;} 
+//}
+
+//Аргументы
+//миксины могут принимать значения как аргументы
+//которые передаются при подключении миксина
+//и становятся доступные как переменные внутри него
+//при определении миксина аргументы пишутся как имена переменных
+//затем при подключении миксина значения могут быть переданы аналогичным образом
+
+//2
+//@mixin fontz ($f, $c, $br:5px) {
+//  font-size: $f;
+//  color: $c;
+//  border: $br;} 
+
+//3
+//@mixin flexborder($val) {
+//  -webkit-box-ordinal-group: $val; 
+//  -moz-box-ordinal-group: $val; 
+//  -ms-flex-order: $val; 
+//  -webkit-oder: $val; 
+//  order: $val;}
+
+//Простой миксин
+//4
+//@mixin font {
+//  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+//  font-size: 18px;
+//  color: brown;
+//  font-weight: 700}
+
+//Подключение миксина делается с помощью @include
+//1
+//p { @include lager-text; } 
+
+//2
+//.text { @include fontz (50px, red, 2px) }
+//h1 { @include fontz (30px, green) }
+
+//3
+//.box { @include flexborder (3px) }
+
+//4
+//.block-text { @include font; }
+
+
+//<миксины>===================================================================================================================
+
+
+//</МИКСИНЫ>==============================================================================================================================
+
+
+
+//<ПЕРЕМЕННЫЕ>=========================================================================================================================
+$minwidth:320px;
+$maxwidth:1100px;
+$md1:$maxwidth+12;
+$md2:992.98; 
+$md3:767.98;
+$md4:479.98;
+
+//Переменные начинаются со знака $
+//$color: #6c6cac;
+//$minwidth: 300px;
+//$mw: $minwidth+1000;
+
+//подключение переменной делается вставлением переменной в Значение свойства
+//.block {
+//  color: $color;
+//  min-width: $minwidth; }
+
+//арифметические операции с переменными
+
+//.content {
+//  min-width: $minwidth+50;
+//  max-width: $mw; }
+
+
+//</ПЕРЕМЕННЫЕ>=========================================================================================================================
+
+
+
+//<ШАБЛОНЫ>=========================================================================================================================
+//Шаблоны начинаются со знака %
+//%tbr {border: 1px dashed rgb(44, 39, 161); width: 300px; background-color: antiquewhite}
+//Шаблон подключается с помощью @extend
+//.block { @extend %tbr;}
+//</ШАБЛОНЫ>=========================================================================================================================
+
+
+
+//<ФАЙЛ ОБНУЛЯЮЩИХ СТИЛЕЙ>=========================================================================================================
+@import "./_reset.scss";
+
+//</ФАЙЛ ОБНУЛЯЮЩИХ СТИЛЕЙ>=========================================================================================================
+
+
+
+body {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+   @media (max-width: 767px){
+	&.lock{overflow: hidden;}
+   }
+}
+.wrapper {
+	min-height: 100%;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+}
+.container {
+	max-width: 1180px;
+	margin: 0px auto;
+	padding: 0 10px;
+}
+.header {
+	position: fixed;
+	width: 100%;
+	left: 0;
+	top: 0;
+	z-index: 50;
+	&::before{
+		content: '';
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background-color: rgb(50, 46, 46);
+		z-index: 3;
+	}
+
+		// .header__row
+
+		&__row {
+			position: relative;
+			height: 80px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			@media (max-width: 767px){
+				height: 50px;
+			}
+		}
+
+		// .header__logo
+
+		&__logo {
+			position: relative;
+			z-index: 3;
+			flex: 0 0 70px;
+			border-radius: 50%;
+			overflow: hidden;
+			img{
+				max-width: 100%;
+				display: block;
+			}
+			@media (max-width: 767px){
+				flex: 0 0 40px;
+			}
+		}
+
+		// .header__burger
+
+		&__burger {
+			display: none;
+			@media (max-width: 767px){
+				display: block;
+				position: relative;
+				width: 30px;
+				height: 20px;
+				z-index: 3;
+				&::before, &::after{
+					content: '';
+					position: absolute;
+					width: 100%;
+					height: 2px;
+					background-color: #fff;
+					left: 0;
+					transition: all 0.3s ease 0s;
+				}
+				&::before{
+					top: 0;
+					transition: all 0.3s ease 0s;
+				}
+				&::after{
+					bottom: 0;
+					transition: all 0.3s ease 0s;
+				}
+				& span{
+					position: absolute;
+					width: 100%;
+					height: 2px;
+					background-color: #fff;
+					top: 9px;
+					
+				}
+				&.active::before{
+					content: '';
+					transform: rotate(45deg);
+					top: 9px;
+				}
+				&.active::after{
+					content: '';
+					transform: rotate(-45deg);
+					bottom: 9px;
+				}
+				&.active span{
+					transform: scale(0);
+					
+
+				}
+
+			}
+		}
+
+		// .header__menu
+
+		&__menu {
+
+			@media (max-width: 767px){
+				position: fixed;
+				width: 100%;
+				height: 100%;
+				left: 0;
+				top: -100%;
+				background-color: rgb(119, 88, 88);
+				padding: 70px 0px 0px 10px;
+				overflow: auto;
+				&.active{
+					top: 0;
+					transition: all 0.3s ease 0s;
+				}
+			}
+		}
+
+		// .header__list
+
+		&__list {
+			position: relative;
+			z-index: 3;
+			display: flex;
+			li{
+				margin: 0px 20px 0px 0px;
+			}
+			@media (max-width: 767px){
+				display: block;
+				li{
+					margin: 0px 0px 20px 0px;
+				}
+			}
+			
+		}
+}
+
+.link {
+	color: #fff;
+	font-size: 18px;
+	text-transform: uppercase;
+}
+.content {
+	flex: 1 1 auto;
+	padding: 80px 0px 0px 0px;
+	@media (max-width: 767px){
+		padding: 50px 0px 0px 0px;
+	}
+	
+}
+.title {
+	font-size: 20px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	@media (max-width: 767px){
+		font-size: 16px;
+	}
+	@media (max-width: 450px){
+		font-size: 14px;
+	}
+}
+
+.colums3 {
+	padding: 50px 0px 25px 0px;
+	@media (max-width: 767px){
+		padding: 30px 0px 15px 0px;
+	}
+	@media (max-width: 450px){
+		padding: 20px 0px 10px 0px;
+	}
+
+	&__title{
+		padding: 0px 0px 20px 0px;
+		text-align: center;
+		@media (max-width: 767px){
+			padding: 0px 0px 15px 0px;
+		}
+		@media (max-width: 450px){
+			padding: 0px 0px 10px 0px;
+		}
+
+	}
+
+	// .colums3__row
+
+	&__row {
+		display: flex;
+		flex: 0 1 33.333%;
+		margin: 0 -8px;
+		@media (max-width: 767px){
+			flex: 0 1 100%;
+			flex-wrap: wrap;
+		}
+	}
+
+	// .colums3__column
+
+	&__column {
+		padding: 0 8px;
+		display: flex;
+		@media (max-width: 767px){
+			margin: 0px 0px 15px 0px;
+			&:last-child{
+				margin: 0;
+			}
+		}
+
+	}
+
+	// .colums3__item
+
+	&__item {
+		padding: 15px;
+		background-color: rgb(49, 110, 99);
+		
+	}
+
+	// .colums3__image
+
+	&__image {
+		flex: 0 1 350px;
+		img{
+			max-width: 100%;
+			display: block;
+		}
+	}
+
+	// .colums3__text
+
+	&__text {
+		padding: 15px 0px 0px 0px;
+		font-size: 18px;
+		color: #fff;
+		line-height: 20px;
+		p{
+			margin: 0px 0px 15px 0px;
+		}
+	}
+}
+
+.colums2 {
+        padding: 25px 0px 25px 0px;
+		@media (max-width: 767px){
+			padding: 15px 0px 15px 0px;
+		}
+		@media (max-width: 450px){
+			padding: 10px 0px 10px 0px;
+		}
+
+	&__title{
+		padding: 0px 0px 20px 0px;
+		text-align: center;
+		@media (max-width: 767px){
+			padding: 0px 0px 15px 0px;
+		}
+		@media (max-width: 450px){
+			padding: 0px 0px 10px 0px;
+		}
+
+	}
+
+	// .colums2__body
+
+	&__body {
+		max-width: 970px;
+		margin: 0px auto;
+	}
+
+	// .colums2__row
+
+	&__row {
+		display: flex;
+		flex: 0 1 50%;
+		margin: 0 -8px;
+		@media (max-width: 767px){
+			flex: 0 1 100%;
+			flex-wrap: wrap;
+		}
+	}
+
+	// .colums2__column
+
+	&__column {
+		padding: 0 8px;
+		display: flex;
+		@media (max-width: 767px){
+			margin: 0px 0px 15px 0px;
+			&:last-child{
+				margin: 0;
+			}
+		}
+	}
+
+	// .colums2__item
+
+	&__item {
+		padding: 15px;
+		background-color: rgb(49, 110, 99);
+	}
+
+	// .colums2__image
+
+	&__image {
+		flex: 0 1 400px;
+		img{
+			max-width: 100%;
+		}
+	}
+
+	// .colums2__text
+
+	&__text {
+		padding: 15px 0px 0px 0px;
+		font-size: 18px;
+		color: #fff;
+		line-height: 20px;
+		p{
+			margin: 0px 0px 15px 0px;
+		}
+	}
+}  
+
+.spoiler {
+	padding: 25px 0px 50px 0px;
+	&__body{
+		max-width: 970px;
+		margin: 0px auto;
+	}
+
+	// .spoiler__row
+
+	&__row {
+	}
+
+	// .spoiler__item
+
+	&__item {
+		padding: 0px 0px 20px 0px;
+		}
+	
+
+	// .spoiler__title
+
+	&__title {
+		padding: 0px 0px 15px 30px; 
+		position: relative;
+		cursor: pointer; 
+		&::before, &::after{
+			content: ''; 
+			position: absolute;
+			width: 15px;
+			height: 2px;
+			background-color: #000;
+			top: 9px;
+			transition: all 0.3s ease 0s;
+		}
+		&::before{
+			transform: rotate(40deg);
+			left: 0;
+		}
+		&::after{
+			transform: rotate(-40deg);
+			left: 10px;
+		}
+		&.active::before, &.active::after{
+            background-color: red;
+		}
+		&.active::before{
+			transform: rotate(-40deg);
+			transition: all 0.3s ease 0s;
+		}
+		&.active::after{
+			transform: rotate(40deg);
+			transition: all 0.3s ease 0s;
+		}
+
+		}
+		
+	// .spoiler__text
+
+	&__text {
+		font-size: 18px;
+		line-height: 20px;
+		padding: 0px 0px 0px 30px;
+		display: none;
+	}
+}
+
+
+.footer {
+	background-color: rgb(50, 46, 46);
+	// .footer__row
+
+	&__row {
+		display: flex;
+		height: 60px;
+		justify-content: center;
+		align-items: center;
+	}
+
+	// .footer__text
+
+	&__text {
+		color: #fff;
+		font-size: 16px;
+		text-transform: uppercase;
+	}
+}
+
